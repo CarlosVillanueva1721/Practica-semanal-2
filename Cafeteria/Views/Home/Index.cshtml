@@ -1,0 +1,162 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Cafeteria Baby</title>
+    <!-- Font Awesome icons (free version)-->
+    <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
+    <!-- Google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="~/Content/styles.css" rel="stylesheet" />
+</head>
+<body id="page-top">
+    <!-- Navigation-->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand js-scroll-trigger" href="#page-top"><img src="assets/img/navbar-logo.svg" alt="" /></a><button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">Menu<i class="fas fa-bars ml-1"></i></button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav text-dark ml-auto">
+                    <li class="nav-item nav-link js-scroll-trigger text-dark">@Html.ActionLink("Inicio", "Index", "Home")</li>
+                    <li class="nav-item nav-link js-scroll-trigger text-dark">@Html.ActionLink("Menu", "index", "Products")</li>
+                    <li class="nav-item nav-link js-scroll-trigger text-dark"><a href="#about">About</a></li>
+                    <li class="nav-item nav-link js-scroll-trigger text-dark"><a href="#contact">Contact</a></li>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li class="nav-item nav-link js-scroll-trigger text-dark">@Html.ActionLink("Ordenes", "index", "orders")</li>
+                        <li class="nav-item nav-link js-scroll-trigger text-dark">@Html.Partial("_LoginPartial")</li>
+                    }
+                    else
+                    {
+                        <li class="nav-item nav-link js-scroll-trigger text-dark">@Html.ActionLink("Iniciar sesión", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+                    }
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- Masthead-->
+    <header class="masthead">
+        <div class="container">
+            <div class="masthead-subheading">Bienvenido a cafeteria Baby</div>
+            <div class="masthead-heading text-uppercase">Un buen lugar para comer</div>
+            <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="@Url.Action( "index", "Products")">Conoce nuestro Menu</a>
+        </div>
+    </header>
+    <!-- About-->
+    <section class="page-section" id="about">
+        <div class="container">
+            <div class="text-center">
+                <h2 class="section-heading text-uppercase">Acerce de noosotros</h2>
+                <h3 class="section-subheading text-muted">Conoce nuestras raizes</h3>
+            </div>
+            <ul class="timeline">
+                <li>
+                    <div class="timeline-image"><img class="rounded-circle img-fluid" src="~/Content/cafeteria1.jpg" alt="" /></div>
+                    <div class="timeline-panel">
+                        <div class="timeline-heading">
+                            <h4>Fundados en 2020</h4>
+                            <h4 class="subheading">Nuestro comienzo</h4>
+                        </div>
+                        <div class="timeline-body"><p class="text-muted">Cafeteria que se simienta en las recetras tradicionales compartidas por generaciones, Surgimos como una pequeña alternativa en un momento de oscuridad en el mundo.</p></div>
+                    </div>
+                </li>
+                <li class="timeline-inverted">
+                    <div class="timeline-image"><img class="rounded-circle img-fluid" src="~/Content/cafeteria2.jpg" alt="" /></div>
+                    <div class="timeline-panel">
+                        <div class="timeline-heading">
+                            <h4 class="subheading">Segimos en crecimiento</h4>
+                        </div>
+                        <div class="timeline-body"><p class="text-muted">Tanto nnuestro personal como nuestras instalaciones son importantes para nosotros, por eso buscamos segir evolucionando y creciendo sin descuidad a nuestros clientes</p></div>
+                    </div>
+                </li>
+                <li>
+                    <div class="timeline-image"><img class="rounded-circle img-fluid" src="~/Content/cafeteria3.jpg" alt="" /></div>
+                    <div class="timeline-panel">
+                        <div class="timeline-heading">
+                            <h4 class="subheading">Servicio, peronal y ambiente</h4>
+                        </div>
+                        <div class="timeline-body"><p class="text-muted">Buscamos que nuestro servicio sea una experiencia personal con cada uno de nuestros clientes, para ello ofrecemos un ambiente calido y un servicio amable por parte de nuestro personal </p></div>
+                    </div>
+                </li>
+                <li class="timeline-inverted">
+                    <div class="timeline-image">
+                        <h4>Se parte<br />de nuestra<br />historia</h4>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Contact-->
+    <section class="page-section" id="contact">
+        <div class="container">
+            <div class="text-center">
+                <h2 class="section-heading text-uppercase">Contactanos</h2>
+                <h3 class="section-subheading text-muted">Ayados a mejorar nuestro servicio</h3>
+            </div>
+            <form id="contactForm" name="sentMessage" novalidate="novalidate">
+                <div class="row align-items-stretch mb-5">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <input class="form-control" id="name" type="text" placeholder="Nombre *" required="required" data-validation-required-message="Porfavor introduce tu Nombre." />
+                            <p class="help-block text-danger"></p>
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" id="email" type="email" placeholder="Correo electronico *" required="required" data-validation-required-message="Porfavor introduce tu correo electronico." />
+                            <p class="help-block text-danger"></p>
+                        </div>
+                        <div class="form-group mb-md-0">
+                            <input class="form-control" id="phone" type="tel" placeholder="Telefono *" required="required" data-validation-required-message="Porfavor introduce tu Telefono." />
+                            <p class="help-block text-danger"></p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group form-group-textarea mb-md-0">
+                            <textarea class="form-control" id="message" placeholder="Tu mensaje *" required="required" data-validation-required-message="Porfavor introduce un mensaje."></textarea>
+                            <p class="help-block text-danger"></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <div id="success"></div>
+                    <button class="btn btn-primary btn-xl text-uppercase" id="sendMessageButton" type="submit">Enviar Mensaje</button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer-->
+    <footer class="footer py-4">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-4 text-lg-left">Copyright © Your Website 2020</div>
+                <div class="col-lg-4 my-3 my-lg-0">
+                    <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-twitter"></i></a><a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-facebook-f"></i></a><a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+                <div class="col-lg-4 text-lg-right"><a class="mr-3" href="#!">Privacy Policy</a><a href="#!">Terms of Use</a></div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap core JS-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
+    <!-- Third party plugin JS-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+    <!-- Contact form JS-->
+    <script src="~/Scripts/jqBootstrapValidation.js"></script>
+    <script src="~/Scripts/contact_me.js"></script>
+    <!-- Core theme JS-->
+    <script src="~/Scripts/scripts.js"></script>
+</body>
+</html>

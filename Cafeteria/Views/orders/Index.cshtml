@@ -1,0 +1,87 @@
+﻿@model IEnumerable<Cafeteria.Models.order>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+
+@*<p>
+    @Html.ActionLink("Create New", "Create")
+</p>*@
+<p>
+    <a href="@Url.Action("Create","orders")" class="btn btn-success btn-sm btn-icon-split">
+        <span class="icon text-white-50"> <i class="fas fa-plus"></i> </span>
+        <span class="text">Nueva Orden</span>
+    </a>
+</p>
+<table class="table table-sm" id="myProducts">
+
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.products.kindpruduct)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ClientName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.quantity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.total)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Coment)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.products.kindpruduct)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ClientName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.quantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.total)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Coment)
+            </td>
+            @if (User.Identity.IsAuthenticated)
+            {
+                <td>
+                    <a href="@Url.Action("Edit", "orders", new { id = item.Id })" class="btn btn-warning btn-circle"> <i class="fas fa-edit"></i></a>
+                    <a href="@Url.Action("Details", "orders", new { id = item.Id })" class="btn btn-info btn-circle"> <i class="fas fa-info-circle"></i></a>
+                    <a href="@Url.Action("Delete", "orders", new { id = item.Id })" class="btn btn-danger btn-circle"> <i class="fas fa-trash"></i></a>
+                </td>
+            }
+        </tr>
+        }
+    </tbody>
+
+</table>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+$(document).ready(function () {
+            $('#myProducts').DataTable();
+        });</script>
+}

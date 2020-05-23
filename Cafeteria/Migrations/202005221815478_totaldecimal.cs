@@ -1,0 +1,18 @@
+namespace Cafeteria.Migrations
+{
+    using System;
+    using System.Data.Entity.Migrations;
+    
+    public partial class totaldecimal : DbMigration
+    {
+        public override void Up()
+        {
+            AlterColumn("dbo.orders", "total", c => c.Decimal(nullable: false, precision: 18, scale: 2));
+        }
+        
+        public override void Down()
+        {
+            AlterColumn("dbo.orders", "total", c => c.Int(nullable: false));
+        }
+    }
+}
